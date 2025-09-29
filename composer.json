@@ -5,7 +5,9 @@
         "psr-4": {
             "Dsxwk\\Framework\\LaravelHelper\\": "src/"
         },
-        "files": []
+        "files": [
+            "./src/Function.php"
+        ]
     },
     "authors": [
         {

@@ -8,7 +8,6 @@ use Dsxwk\Framework\LaravelHelper\Param\PageDataParam;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Illuminate\Database\Capsule\Manager as DB;
 use Exception;
 
 class QueryBuilder extends Builder
@@ -181,7 +180,7 @@ class QueryBuilder extends Builder
             $values[$key][$model::UPDATED_AT] = $dateTime;
         }
 
-        return DB::statement(batchUpdateSql(getTable($model::class), $values, $primaryKey, $where));
+        return Db::statement(batchUpdateSql(getTable($model::class), $values, $primaryKey, $where));
     }
 
     /**
