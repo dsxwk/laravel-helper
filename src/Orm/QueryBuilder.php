@@ -137,7 +137,7 @@ class QueryBuilder extends Builder
 
         $q = $model::query()->whereIn($pk, array_column($data, $primaryKey))->where($where);
         foreach ($caseWhen as $key => &$item) {
-            $item = DB::raw('CASE ' . implode(' ', $item) . " ELSE `{$key}` END ");
+            $item = Db::raw('CASE ' . implode(' ', $item) . " ELSE `{$key}` END ");
         }
 
         /**
