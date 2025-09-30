@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dsxwk\Framework\Laravel\Model\Trait;
+namespace Dsxwk\Framework\LaravelHelper\Model\Trait;
 
 use Dsxwk\Framework\LaravelHelper\Orm\QueryBuilder;
 use Dsxwk\Framework\LaravelHelper\Param\PageDataParam;

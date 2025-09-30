@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dsxwk\Framework\LaravelHelper\Model;
 
-use Dsxwk\Framework\Laravel\Model\Trait\ModelHelper;
+use Dsxwk\Framework\LaravelHelper\Model\Trait\ModelHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
