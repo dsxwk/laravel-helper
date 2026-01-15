@@ -56,6 +56,29 @@ abstract class BaseModel extends Model
      */
     const DELETED_AT = 'deleted_at';
 
+    public function getAttribute($key)
+    {
+        return parent::getAttribute($key) ?? parent::getAttribute(Str::snake($key));
+    }
+
+    public function setAttribute($key, $value)
+    {
+        return parent::setAttribute(Str::snake($key), $value);
+    }
+
+    public function toArray(): array
+    {
+        if ($this->isCamel()) {
+            $array = [];
+            foreach (parent::toArray() as $key => $value) {
+                $array[Str::camel($key)] = $value;
+            }
+            return $array;
+        } else {
+            return parent::toArray();
+        }
+    }
+
     public function getFillable(): array
     {
         if ($this->isCamel()) {
@@ -70,23 +93,12 @@ abstract class BaseModel extends Model
         }
     }
 
-    public function toArray(): array
+    public function jsonSerialize(): mixed
     {
-        if ($this->isCamel()) {
-            $result = [];
-
-            foreach (parent::toArray() as $key => $value) {
-                $newKey = is_string($key) ? Str::camel($key) : $key;
-                if (is_array($value)) {
-                    $result[$newKey] = keysToCamelOrSnake($value, false);
-                } else {
-                    $result[$newKey] = $value;
-                }
-            }
-
-            return $result;
-        } else {
-            return parent::toArray();
+        $array = [];
+        foreach ($this->toArray() as $key => $value) {
+            $array[Str::camel($key)] = $value;
         }
+        return $array;
     }
 }
